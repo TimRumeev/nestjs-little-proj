@@ -1,12 +1,24 @@
+# version: '3.1'
+
+# services:
+#   mongo:
+#     container_name: mongo
+#     image: mongo
+#     environment:
+#       MONGO_INITDB_ROOT_USERNAME: admin
+#       MONGO_INITDB_ROOT_PASSWORD: root
+#     volumes:
+#       - ./mongo-data:/data/mongo
+#     ports:
+#       - "27017:27017"
+
 version: '3.1'
 services:
   mongo:
     image: mongo
     container_name: mongo
     restart: always
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME = admin
-      - MONGO_INITDB_ROOT_PASSWORD = admin
+    environment: MONGO_INITDB_ROOT_USERNAME = admin MONGO_INITDB_ROOT_PASSWORD = admin
     ports:
       - 27017:27017
     volumes:
