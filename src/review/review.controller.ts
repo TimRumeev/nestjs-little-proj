@@ -1,6 +1,17 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post } from "@nestjs/common";
-import { UsePipes } from "@nestjs/common/decorators";
+import {
+	Body,
+	Controller,
+	Delete,
+	Get,
+	HttpException,
+	HttpStatus,
+	Param,
+	Post
+} from "@nestjs/common";
+import { UseGuards, UsePipes } from "@nestjs/common/decorators";
 import { ValidationPipe } from "@nestjs/common/pipes";
+import { JwtAuthGuard } from "../auth/guards/jwt.guard";
+import { UserEmail } from "src/decorators/user-email.decorator";
 import { CreateReviewDto } from "./dto/create-review.dto";
 import { REVIEW_NOT_FOUND } from "./review.constants";
 import { ReviewService } from "./review.service";
@@ -15,6 +26,7 @@ export class ReviewController {
 		return this.reviewService.create(dto);
 	}
 
+	@UseGuards(JwtAuthGuard)
 	@Delete(":id")
 	async delete(@Param("id") id: string) {
 		const deletedDoc = await this.reviewService.delete(id);
