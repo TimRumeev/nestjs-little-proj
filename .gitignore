@@ -1,5 +1,6 @@
 # compiled output
 /mongo-data
+/uploads
 /dist
 /node_modules
 /.env
